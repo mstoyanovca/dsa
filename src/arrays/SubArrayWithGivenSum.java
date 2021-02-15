@@ -33,27 +33,26 @@ public class SubArrayWithGivenSum {
 
     public static void main(String[] args) {
         SubArrayWithGivenSum subArrayWithGivenSum = new SubArrayWithGivenSum();
+
         int n = 5;
         int s = 12;
         int[] arr = {1, 2, 3, 7, 5};
-
         System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
         // [2, 4]
 
         n = 10;
         s = 15;
         arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
         System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
         // [1, 5]
 
         n = 3;
         s = 20;
         arr = new int[]{1, 2, 3};
-
         System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
         // [-1]
 
+        // Making sure the function is tailrecusrive and no stackoverflow is thrown:
         n = 100_000;
         s = 111_111;
         arr = new int[n];
@@ -61,6 +60,6 @@ public class SubArrayWithGivenSum {
             arr[x] = x;
         }
         System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
-        // [?, ?]
+        // [11, 472]
     }
 }
