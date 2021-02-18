@@ -8,27 +8,24 @@ public class SubArrayWithGivenSum {
     public ArrayList<Integer> subarraySum(int[] arr, int n, int s) {
         if (n <= 0 || s < 0) return new ArrayList<>(Collections.singletonList(-1));
 
-        return Arrays
-                .stream(recursive(arr, 0, 0, s, n))
-                .boxed()
-                .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
-    }
+        int startIndex = 0;
+        int endIndex = 0;
+        int tempSum = 0;
 
-    private int[] recursive(int[] arr, int startIndex, int endIndex, int s, int n) {
-        int tempSum = Arrays.stream(Arrays.copyOfRange(arr, startIndex, endIndex + 1)).sum();
-
-        if (tempSum == s) {
-            // 1 index-based:
-            return new int[]{startIndex + 1, endIndex + 1};
-        } else if (tempSum < s) {
-            return endIndex == n - 1 ?
-                    new int[]{-1} :
-                    recursive(arr, startIndex, endIndex + 1, s, n);
-        } else {
-            return startIndex == n - 1 ?
-                    new int[]{-1} :
-                    recursive(arr, startIndex + 1, endIndex, s, n);
+        while (tempSum != s) {
+            tempSum = Arrays.stream(Arrays.copyOfRange(arr, startIndex, endIndex + 1)).sum();
+            if (tempSum < s) {
+                if (endIndex == n - 1) return new ArrayList<>(Collections.singletonList(-1));
+                endIndex++;
+            }
+            if (tempSum > s) {
+                if (startIndex == n - 1) return new ArrayList<>(Collections.singletonList(-1));
+                startIndex++;
+            }
         }
+
+        // 1-index based:
+        return new ArrayList<>(Arrays.asList(startIndex + 1, endIndex + 1));
     }
 
     public static void main(String[] args) {
@@ -52,7 +49,6 @@ public class SubArrayWithGivenSum {
         System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
         // [-1]
 
-        // Making sure the function is tailrecusrive and no stackoverflow is thrown:
         n = 100_000;
         s = 111_111;
         arr = new int[n];
