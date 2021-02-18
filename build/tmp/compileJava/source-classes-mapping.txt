@@ -1,2 +1,4 @@
 arrays/SubArrayWithGivenSum.java
  arrays.SubArrayWithGivenSum
+arrays/CountTheTriplets.java
+ arrays.CountTheTriplets
