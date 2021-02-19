@@ -1,6 +1,8 @@
 arrays/SubArrayWithGivenSum.java
  arrays.SubArrayWithGivenSum
-arrays/CountTheTriplets.java
- arrays.CountTheTriplets
 arrays/Kadane.java
  arrays.Kadane
+arrays/CountTheTriplets.java
+ arrays.CountTheTriplets
+arrays/MissingNumber.java
+ arrays.MissingNumber

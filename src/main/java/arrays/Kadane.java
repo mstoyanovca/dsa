@@ -23,7 +23,6 @@ public class Kadane {
 
         int n = 5;
         int[] arr = {1, 2, 3, -2, 5};
-        System.out.println(kadane.maxSubarraySum(arr, n));
-        // 9
+        System.out.println(kadane.maxSubarraySum(arr, n));  // 9
     }
 }

@@ -34,20 +34,17 @@ public class SubArrayWithGivenSum {
         int n = 5;
         int s = 12;
         int[] arr = {1, 2, 3, 7, 5};
-        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
-        // [2, 4]
+        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));  // [2, 4]
 
         n = 10;
         s = 15;
         arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
-        // [1, 5]
+        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));  // [1, 5]
 
         n = 3;
         s = 20;
         arr = new int[]{1, 2, 3};
-        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
-        // [-1]
+        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));  // [-1]
 
         n = 100_000;
         s = 111_111;
@@ -55,7 +52,6 @@ public class SubArrayWithGivenSum {
         for (int x = 0; x < n; x++) {
             arr[x] = x;
         }
-        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));
-        // [11, 472]
+        System.out.println(subArrayWithGivenSum.subarraySum(arr, n, s));  // [11, 472]
     }
 }
