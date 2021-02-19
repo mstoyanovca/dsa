@@ -29,11 +29,11 @@ public class KadaneTest {
 
     @Test
     public void stackOverflowTest() throws IllegalAccessException {
-        int n = 10_000;
+        int n = 1_000_000;
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
             arr[i] = i;
         }
-        assertEquals(49995000, kadane.maxSubarraySum(arr, n));
+        assertEquals(2147483499, kadane.maxSubarraySum(arr, n));
     }
 }

@@ -8,13 +8,11 @@ public class Kadane {
         }
 
         int sum = arr[0];
-        
+        int tempSum = 0;
+
         for (int i = 0; i < n; i++) {
-            int tempSum = 0;
-            for (int j = i; j < n; j++) {
-                tempSum += arr[j];
-                if (tempSum > sum) sum = tempSum;
-            }
+            tempSum = Math.max(tempSum + arr[i], arr[i]);
+            if (tempSum > sum) sum = tempSum;
         }
 
         return sum;
