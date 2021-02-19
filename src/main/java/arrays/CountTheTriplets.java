@@ -33,5 +33,6 @@ public class CountTheTriplets {
         int[] arr = {1, 5, 3, 2};
         int n = 4;
         System.out.println(countTheTriplets.countTriplet(arr, n));
+        // 2
     }
 }

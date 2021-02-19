@@ -2,3 +2,5 @@ arrays/SubArrayWithGivenSumTest.java
  arrays.SubArrayWithGivenSumTest
 arrays/CountTheTripletsTest.java
  arrays.CountTheTripletsTest
+arrays/KadaneTest.java
+ arrays.KadaneTest
