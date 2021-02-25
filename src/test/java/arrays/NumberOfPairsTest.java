@@ -44,6 +44,6 @@ public class NumberOfPairsTest {
         int[] y = new int[n];
         for (int i = 1; i <= n; i++) y[i - 1] = Math.min(i, 1_000);
 
-        assertEquals(100996, numberOfPairs.countPairs(x, y, m, n));
+        assertEquals(99400499, numberOfPairs.countPairs(x, y, m, n));
     }
 }

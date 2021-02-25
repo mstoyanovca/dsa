@@ -14,7 +14,7 @@ public class NumberOfPairs {
 
         Arrays.sort(y);
 
-        int counter = 0;
+        long counter = 0;
         for (int i = 0; i < m; i++) counter += count(x[i], y, n, exceptions);
         return counter;
     }
