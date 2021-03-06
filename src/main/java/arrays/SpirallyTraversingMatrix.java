@@ -10,18 +10,18 @@ public class SpirallyTraversingMatrix {
     public ArrayList<Integer> spirallyTraverse(int[][] matrix, int r, int c) {
         ArrayList<Integer> result = new ArrayList<>();
 
-        while (matrix.length > 0) {
+        while (isNotEmpty(matrix)) {
             result.addAll(printFirstRow(matrix));
             matrix = removeFirstRow(matrix);
-            if (matrix.length > 0) {
+            if (isNotEmpty(matrix)) {
                 result.addAll(printLastColumn(matrix));
                 matrix = removeLastColumn(matrix);
             }
-            if (matrix.length > 0) {
+            if (isNotEmpty(matrix)) {
                 result.addAll(printLastRow(matrix));
                 matrix = removeLastRow(matrix);
             }
-            if (matrix.length > 0) {
+            if (isNotEmpty(matrix)) {
                 result.addAll(printFirstColumn(matrix));
                 matrix = removeFirstColumn(matrix);
             }
@@ -70,6 +70,10 @@ public class SpirallyTraversingMatrix {
 
     private int[][] removeLastColumn(int[][] matrix) {
         return Arrays.stream(matrix).map(row -> Arrays.copyOfRange(row, 0, row.length - 1)).toArray(int[][]::new);
+    }
+
+    private boolean isNotEmpty(int[][] arr) {
+        return arr.length > 0 && arr[0].length > 0;
     }
 
     public static void main(String[] args) {
