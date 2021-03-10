@@ -1,24 +1,29 @@
 package string;
 
 public class AdjacentDuplicates {
-    private String removeAdjacentDuplicates(int n, String... s) {
-        int m = 0;
-        StringBuilder result = new StringBuilder();
+    public String remove(String s) {
+        return loop(s, s.length());
+    }
 
-        while (m < n) {
-            for (int i = 0; i < s[m].length() - 1; i++)
-                if (s[m].charAt(i) == s[m].charAt(i + 1))
-                    s[m] = new StringBuilder(s[m]).deleteCharAt(i).deleteCharAt(i).toString();
-
-            result.append(s[m]).append("\n");
-            m++;
+    private String loop(String s, int initLength) {
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                char pattern = s.charAt(i);
+                while (s.length() > 0 && s.charAt(i) == pattern) s = new StringBuilder(s).deleteCharAt(i).toString();
+            }
         }
 
-        return result.toString();
+        return s.length() == initLength ? s : loop(s, s.length());
     }
 
     public static void main(String[] args) {
-        String[] arr = {"geeksforgeek", "quhxgrhqqaccxeprunllfieilbothbbmpsg"};
-        System.out.println(new AdjacentDuplicates().removeAdjacentDuplicates(args.length, arr));  // gksforgk
+        String s1 = "geeksforgeek";
+        System.out.println(new AdjacentDuplicates().remove(s1));  // gksforgk
+
+        String s2 = "quhxgrhqqaccxeprunllfieilbothbbmpsg";
+        System.out.println(new AdjacentDuplicates().remove(s2));  // quhxgrhqqaccxeprunllfieilbothbbmpsg
+
+        String s3 = "aaa";//""aaaaaaaaaaaaa";
+        System.out.println(new AdjacentDuplicates().remove(s3));  //
     }
 }
