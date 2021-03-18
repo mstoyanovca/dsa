@@ -35,7 +35,7 @@ public class FindMiddleElement {
 
     public static void main(String[] args) {
         FindMiddleElement linkedList = new FindMiddleElement();
-        for (int i = 6; i > 0; i--) linkedList.add(i);
+        for (int i = 5; i > 0; i--) linkedList.add(i);
         System.out.println(new FindMiddleElement().getMiddle(linkedList.head));  // 3
     }
 }
