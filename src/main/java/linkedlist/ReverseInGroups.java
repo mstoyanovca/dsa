@@ -1,6 +1,6 @@
 package linkedlist;
 
-public class ReverseLinkedListInGroups {
+public class ReverseInGroups {
     private Node head;
 
     public Node reverse(Node head, int k) {
@@ -47,7 +47,7 @@ public class ReverseLinkedListInGroups {
     }
 
     public static void main(String[] args) {
-        ReverseLinkedListInGroups linkedList = new ReverseLinkedListInGroups();
+        ReverseInGroups linkedList = new ReverseInGroups();
         int k = 4;
         for (int i = 8; i > 0; i--) linkedList.add(i);
 

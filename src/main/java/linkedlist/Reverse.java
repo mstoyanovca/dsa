@@ -1,6 +1,6 @@
 package linkedlist;
 
-public class ReverseLinkedList {
+public class Reverse {
     private Node head;
 
     public Node reverseList(Node node) {
@@ -50,10 +50,10 @@ public class ReverseLinkedList {
     }
 
     public static void main(String[] args) {
-        ReverseLinkedList linkedList = new ReverseLinkedList();
+        Reverse linkedList = new Reverse();
         for (int i = 6; i > 0; i--) linkedList.add(i);
 
         // System.out.println(new ReverseLinkedList().reverseList(linkedList.head));  // 6
-        System.out.println(new ReverseLinkedList().loop(linkedList.head));  // 6
+        System.out.println(new Reverse().loop(linkedList.head));  // 6
     }
 }

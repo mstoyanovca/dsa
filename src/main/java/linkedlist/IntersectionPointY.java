@@ -35,7 +35,7 @@ public class IntersectionPointY {
     }
 
     private static class LinkedList {
-        Node head;
+        private Node head;
 
         public void add(int data) {
             Node node = new Node(data);

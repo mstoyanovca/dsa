@@ -1,6 +1,6 @@
 package linkedlist;
 
-public class LinkedListRotation {
+public class Rotation {
     private Node head;
 
     public Node rotate(Node head, int k) {
@@ -50,7 +50,7 @@ public class LinkedListRotation {
     }
 
     public static void main(String[] args) {
-        LinkedListRotation linkedList = new LinkedListRotation();
+        Rotation linkedList = new Rotation();
         for (int i = 8; i > 0; i--) linkedList.add(i);
 
         System.out.println(linkedList.rotate(linkedList.head, 4));  // 5
