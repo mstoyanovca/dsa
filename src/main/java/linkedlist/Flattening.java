@@ -2,7 +2,7 @@ package linkedlist;
 
 public class Flattening {
     public Node flatten(Node root) {
-        
+        int x = 0;
 
         return null;
     }
