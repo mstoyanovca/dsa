@@ -2,9 +2,30 @@ package linkedlist;
 
 public class Flattening {
     public Node flatten(Node root) {
-        int x = 0;
+        if (root == null || root.next == null) return root;
 
-        return null;
+        root.next = flatten(root.next);
+        root = merge(root, root.next);
+
+        return root;
+    }
+
+    private Node merge(Node a, Node b) {
+        if (a == null) return b;
+        if (b == null) return a;
+
+        Node result;
+
+        if (a.data < b.data) {
+            result = a;
+            result.bottom = merge(a.bottom, b);
+        } else {
+            result = b;
+            result.bottom = merge(a, b.bottom);
+        }
+
+        result.next = null;
+        return result;
     }
 
     private static class LinkedList {
