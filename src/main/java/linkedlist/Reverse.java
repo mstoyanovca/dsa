@@ -15,8 +15,7 @@ public class Reverse {
             curr = next;
         }
 
-        node = prev;
-        return node;
+        return prev;
     }
 
     public Node loop(Node node) {
