@@ -3,22 +3,21 @@ package stack_and_queue;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class NGE {
     public long[] nextLargerElement(long[] arr, int n) {
         long[] result = new long[n];
-        Deque<Long> stack = new ArrayDeque<>();
-        List<Long> list = Arrays.stream(arr).boxed().collect(Collectors.toList());
+        Deque<Long> dataStack = new ArrayDeque<>();
+        Deque<Integer> indexStack = new ArrayDeque<>();
 
         for (int i = 0; i < n; i++) {
             result[i] = -1;
-            while (!stack.isEmpty() && arr[i] > stack.getFirst()) {
-                Long popped = stack.pop();
-                result[list.indexOf(popped)] = arr[i];
+            while (!dataStack.isEmpty() && arr[i] > dataStack.getFirst()) {
+                dataStack.pop();
+                result[indexStack.pop()] = arr[i];
             }
-            stack.push(arr[i]);
+            dataStack.push(arr[i]);
+            indexStack.push(i);
         }
 
         return result;
