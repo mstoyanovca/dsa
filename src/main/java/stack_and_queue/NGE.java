@@ -1,9 +1,30 @@
 package stack_and_queue;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class NGE {
     public long[] nextLargerElement(long[] arr, int n) {
+        long[] result = new long[n];
+        Deque<Long> stack = new ArrayDeque<>();
+        List<Long> list = Arrays.stream(arr).boxed().collect(Collectors.toList());
+
+        for (int i = 0; i < n; i++) {
+            result[i] = -1;
+            while (!stack.isEmpty() && arr[i] > stack.getFirst()) {
+                Long popped = stack.pop();
+                result[list.indexOf(popped)] = arr[i];
+            }
+            stack.push(arr[i]);
+        }
+
+        return result;
+    }
+
+    public long[] nextLargerElement2(long[] arr, int n) {
         long[] result = new long[n];
         result[0] = arr[0];
 
@@ -26,11 +47,9 @@ public class NGE {
     }
 
     public static void main(String[] args) {
-        int n = 4;
-        long[] arr = {1, 3, 2, 4};
-        // long[] arr = {7, 8, 1, 4};
-        //long[] arr = {5, 4, 3, 2, 1};
+        int n = 14;
+        long[] arr = {10, 3, 12, 4, 2, 9, 13, 0, 8, 11, 1, 7, 5, 6};
 
-        System.out.println(Arrays.toString(new NGE().nextLargerElement(arr, n)));  // 8, -1, 4, -1
+        System.out.println(Arrays.toString(new NGE().nextLargerElement(arr, n)));  // 12 12 13 9 9 13 -1 8 11 -1 7 -1 6 -1
     }
 }
