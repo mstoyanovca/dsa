@@ -22,6 +22,9 @@ public class LRUCache {
         node.next.previous = node;
         node.previous = head;
         head.next = node;
+        head.previous = null;
+        tail.next = null;
+        length = 0;
     }
 
     private void delete(Node node) {
@@ -74,24 +77,13 @@ public class LRUCache {
 
     public static void main(String[] args) {
         LRUCache cache = new LRUCache(2);
-        System.out.println(cache.get(100));
-        System.out.println(cache.get(26));
-        System.out.println(cache.get(91));
-        cache.set(55, 40);
-        System.out.println(cache.get(70));
-        System.out.println(cache.get(43));
-        System.out.println(cache.get(98));
-        cache.set(5, 56);
-        System.out.println(cache.get(12));
-        System.out.println(cache.get(29));
-
-        /*cache.set(1, 2);
+        cache.set(1, 2);
         cache.set(2, 3);
         cache.set(1, 5);
         cache.set(4, 5);
         cache.set(6, 7);
         System.out.println(cache.get(4));  // 5
         cache.set(1, 2);
-        System.out.println(cache.get(3));  // -1*/
+        System.out.println(cache.get(3));  // -1
     }
 }
