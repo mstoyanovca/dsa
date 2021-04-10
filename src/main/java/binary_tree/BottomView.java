@@ -11,17 +11,17 @@ public class BottomView {
 
         root.hd = 0;
         queue.add(root);
+
         while (!queue.isEmpty()) {
             Node node = queue.remove();
-            int hd = node.hd;
-            map.put(hd, node.data);
+            map.put(node.hd, node.data);
 
             if (node.left != null) {
-                node.left.hd = hd - 1;
+                node.left.hd = node.hd - 1;
                 queue.add(node.left);
             }
             if (node.right != null) {
-                node.right.hd = hd + 1;
+                node.right.hd = node.hd + 1;
                 queue.add(node.right);
             }
         }
@@ -30,8 +30,7 @@ public class BottomView {
     }
 
     private static class Node {
-        int data;
-        int hd;
+        int data, hd;
         Node left, right;
 
         public Node(int data) {
