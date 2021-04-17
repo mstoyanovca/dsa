@@ -13,10 +13,12 @@ public class SerializeDeserialize {
 
     public Node deSerialize(ArrayList<Integer> list) {
         if (list.isEmpty()) return null;
+
         Node node = new Node(list.get(0));
         list.remove(0);
         node.right = deSerialize(list);
         node.left = deSerialize(list);
+
         return node;
     }
 
