@@ -4,23 +4,19 @@ import java.util.ArrayList;
 
 public class SerializeDeserialize {
     public void serialize(Node root, ArrayList<Integer> result) {
-        if (root == null) {
-            result.add(-1);
-            return;
-        }
+        if (root == null) return;
 
+        serialize(root.left, result);
         result.add(root.data);
-
-        if (root.left != null) serialize(root.left, result);
-        if (root.right != null) serialize(root.right, result);
+        serialize(root.right, result);
     }
 
     public Node deSerialize(ArrayList<Integer> list) {
         if (list.isEmpty()) return null;
         Node node = new Node(list.get(0));
         list.remove(0);
-        node.left = deSerialize(list);
         node.right = deSerialize(list);
+        node.left = deSerialize(list);
         return node;
     }
 
@@ -34,18 +30,15 @@ public class SerializeDeserialize {
     }
 
     public static void main(String[] args) {
-        /*Node root = new Node(10);
+        Node root = new Node(10);
         root.left = new Node(20);
         root.left.left = new Node(40);
         root.left.right = new Node(60);
-        root.right = new Node(30);*/
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
+        root.right = new Node(30);
 
         ArrayList<Integer> result = new ArrayList<>();
         new SerializeDeserialize().serialize(root, result);
-        System.out.println(result);
+        System.out.println(result);  // 40, 20, 60, 10, 30
 
         System.out.println(new SerializeDeserialize().deSerialize(result));
     }
