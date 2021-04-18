@@ -19,7 +19,7 @@ public class MedianInStream {
     public double getMedian() {
         if (list.size() == 1) return list.get(0);
         if (list.size() % 2 != 0) {
-            return list.get(list.size() / 2 - 1);
+            return list.get(list.size() / 2);
         } else {
             int left = list.get(list.size() / 2 - 1);
             int right = list.get(list.size() / 2);
