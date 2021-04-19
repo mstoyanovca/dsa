@@ -1,30 +1,51 @@
 package heap;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.PriorityQueue;
 
 public class MedianInStream {
-    private final List<Integer> list = new ArrayList<>();
+    private double median = 0;
+
+    // store elements greater than the effective median:
+    private final PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    // store elements smaller than the effective median:
+    private final PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 
     public void insertHeap(int x) {
-        list.add(x);
-        balanceHeaps();
+        if (median == 0) median = x;
+
+        if (maxHeap.size() > minHeap.size()) {
+            if (x < median) {
+                minHeap.add(maxHeap.remove());
+                maxHeap.add(x);
+            } else {
+                minHeap.add(x);
+            }
+            median = !minHeap.isEmpty() && !maxHeap.isEmpty() ? (double) (minHeap.peek() + maxHeap.peek()) / 2 : 0;
+        } else if (maxHeap.size() < minHeap.size()) {
+            if (x > median) {
+                maxHeap.add(minHeap.remove());
+                minHeap.add(x);
+            } else {
+                maxHeap.add(x);
+            }
+            median = !minHeap.isEmpty() && !maxHeap.isEmpty() ? (double) (minHeap.peek() + maxHeap.peek()) / 2 : 0;
+        } else {
+            if (x < median) {
+                maxHeap.add(x);
+                median = !maxHeap.isEmpty() ? maxHeap.peek() : 0;
+            } else {
+                minHeap.add(x);
+                median = !minHeap.isEmpty() ? minHeap.peek() : 0;
+            }
+        }
     }
 
     public void balanceHeaps() {
-        Collections.sort(list);
     }
 
     public double getMedian() {
-        if (list.size() == 1) return list.get(0);
-        if (list.size() % 2 != 0) {
-            return list.get(list.size() / 2);
-        } else {
-            int left = list.get(list.size() / 2 - 1);
-            int right = list.get(list.size() / 2);
-            return (left + right) / 2;
-        }
+        return median;
     }
 
     public static void main(String[] args) {
