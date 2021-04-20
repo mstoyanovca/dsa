@@ -41,6 +41,6 @@ public class Sort {
         int[] array = {4, 1, 3, 9, 7};
 
         new Sort().heapSort(array, n);
-        System.out.println(Arrays.toString(array));
+        System.out.println(Arrays.toString(array));  // 1, 3, 4, 7, 9
     }
 }
