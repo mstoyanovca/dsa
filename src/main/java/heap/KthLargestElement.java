@@ -14,12 +14,14 @@ public class KthLargestElement {
                 result[i] = -1;
             } else if (i == k - 1) {
                 minHeap.add(arr[i]);
-                result[i] = minHeap.size() > 0 ? minHeap.peek() : 0;
+                result[i] = minHeap.peek();
             } else {
-                minHeap.remove(arr[i - k]);
-                minHeap.add(arr[i]);
-                result[i] = minHeap.size() > 0 ? minHeap.peek() : 0;
-                int x = 0;
+                if (arr[i] > minHeap.peek()) {
+                    minHeap.remove();
+                    minHeap.add(arr[i]);
+                    result[i] = minHeap.peek();
+                }
+                result[i] = minHeap.peek();
             }
         }
 
@@ -29,7 +31,7 @@ public class KthLargestElement {
     public static void main(String[] args) {
         int k = 4;
         int n = 6;
-        int[] arr = {1, 2, 3, 4, 5, 6};  // -1 -1 -1 1 1 1
+        int[] arr = {6, 2, 3, 4, 5, 1};  // -1 -1 -1 1 1 1
 
         System.out.println(Arrays.toString(new KthLargestElement().kthLargest(k, arr, n)));  // -1, -1, -1, 1, 2, 3
     }
