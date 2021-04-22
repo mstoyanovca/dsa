@@ -31,8 +31,8 @@ public class KthLargestElement {
     public static void main(String[] args) {
         int k = 4;
         int n = 6;
-        int[] arr = {6, 2, 3, 4, 5, 1};  // -1 -1 -1 1 1 1
+        int[] arr = {6, 2, 3, 4, 5, 1};
 
-        System.out.println(Arrays.toString(new KthLargestElement().kthLargest(k, arr, n)));  // -1, -1, -1, 1, 2, 3
+        System.out.println(Arrays.toString(new KthLargestElement().kthLargest(k, arr, n)));  // -1 -1 -1 2 3 3
     }
 }
