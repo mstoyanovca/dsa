@@ -2,58 +2,44 @@ package recursion;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class FloodFill {
     public int[][] floodFill(int[][] image, int row, int column, int newColor) {
         int previousColor = image[row][column];
         int[][] visited = new int[image.length][image[0].length];
-        Queue<Pixel> queue = new LinkedList<>();
+        Queue<List<Integer>> queue = new LinkedList<>();
 
-        queue.add(new Pixel(row, column));
+        queue.add(Arrays.asList(row, column));
         visited[row][column] = 1;
 
         while (!queue.isEmpty()) {
-            Pixel pixel = queue.remove();
-            int r = pixel.row;
-            int c = pixel.column;
+            List<Integer> pixel = queue.remove();
+            int r = pixel.get(0);
+            int c = pixel.get(1);
 
             image[r][c] = newColor;
 
             if (r - 1 >= 0 && image[r - 1][c] == previousColor && visited[r - 1][c] == 0) {
                 visited[r - 1][c] = 1;
-                queue.add(new Pixel(r - 1, c));
+                queue.add(Arrays.asList(r - 1, c));
             }
             if (r + 1 < image.length && image[r + 1][c] == previousColor && visited[r + 1][c] == 0) {
                 visited[r + 1][c] = 1;
-                queue.add(new Pixel(r + 1, c));
+                queue.add(Arrays.asList(r + 1, c));
             }
             if (c - 1 >= 0 && image[r][c - 1] == previousColor && visited[r][c - 1] == 0) {
                 visited[r][c - 1] = 1;
-                queue.add(new Pixel(r, c - 1));
+                queue.add(Arrays.asList(r, c - 1));
             }
             if (c + 1 < image[0].length && image[r][c + 1] == previousColor && visited[r][c + 1] == 0) {
                 visited[r][c + 1] = 1;
-                queue.add(new Pixel(r, c + 1));
+                queue.add(Arrays.asList(r, c + 1));
             }
         }
 
         return image;
-    }
-
-    private static class Pixel implements Comparable<Pixel> {
-        int row;
-        int column;
-
-        public Pixel(int row, int column) {
-            this.row = row;
-            this.column = column;
-        }
-
-        @Override
-        public int compareTo(Pixel pixel) {
-            return row - pixel.row + column - pixel.column;
-        }
     }
 
     // recursive:
