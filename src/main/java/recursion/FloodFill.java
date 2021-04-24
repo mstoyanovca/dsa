@@ -4,27 +4,21 @@ import java.util.Arrays;
 
 public class FloodFill {
     public int[][] floodFill(int[][] image, int row, int column, int newColor) {
-        int oldColor = image[row][column];
+        loop(image, row, column, image[row][column], newColor);
+        return image;
+    }
+
+    private void loop(int[][] image, int row, int column, int oldColor, int newColor) {
+        if (row < 0 || row > image.length - 1) return;
+        if (column < 0 || column > image[0].length - 1) return;
+        if (image[row][column] != oldColor) return;
+
         image[row][column] = newColor;
 
-        if (row - 1 >= 0 && image[row - 1][column] == oldColor) {
-            image[row - 1][column] = newColor;
-            floodFill(image, row - 1, column, newColor);
-        }
-        if (row + 1 < image.length && image[row + 1][column] == oldColor) {
-            image[row + 1][column] = newColor;
-            floodFill(image, row + 1, column, newColor);
-        }
-        if (column - 1 >= 0 && image[row][column - 1] == oldColor) {
-            image[row][column - 1] = newColor;
-            floodFill(image, row, column - 1, newColor);
-        }
-        if (column + 1 < image[0].length && image[row][column + 1] == oldColor) {
-            image[row][column + 1] = newColor;
-            floodFill(image, row, column + 1, newColor);
-        }
-
-        return image;
+        loop(image, row, column - 1, oldColor, newColor);
+        loop(image, row, column + 1, oldColor, newColor);
+        loop(image, row - 1, column, oldColor, newColor);
+        loop(image, row + 1, column, oldColor, newColor);
     }
 
     public static void main(String[] args) {
