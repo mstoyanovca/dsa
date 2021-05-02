@@ -24,10 +24,9 @@ public class ZeroSumSubArrays {
     }
 
     public static void main(String[] args) {
-        int n = 30;//6;
-        //long[] arr = {0, 0, 5, 5, 0, 0};
-        long[] arr = {9, -10, -1, 5, 17, -18, 6, 19, -12, 5, 18, 14, 4, -19, 11, 8, -19, 18, -20, 14, 8, -14, 12, -12, 16, -11, 0, 3, -19, 16};
+        int n = 6;
+        long[] arr = {0, 0, 5, 5, 0, 0};
 
-        System.out.println(new ZeroSumSubArrays().findSubarray(arr, n));  // 6  11
+        System.out.println(new ZeroSumSubArrays().findSubarray(arr, n));  // 6
     }
 }
