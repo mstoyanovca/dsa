@@ -34,7 +34,7 @@ public class SmallestWindow {
             }
         }
 
-        return start == -1 ? "-1" : s.substring(left, left + min);
+        return start == -1 ? "-1" : s.substring(start, start + min);
     }
 
     public static void main(String[] args) {
