@@ -28,8 +28,10 @@ public class SmallestWindow {
                             hash_s.put(s.charAt(left), hash_s.get(s.charAt(left)) - 1);
                         left++;
                     }
-                    min = Math.min(min, i - left + 1);
-                    start = left;
+                    if (i - left + 1 < min) {
+                        min = i - left + 1;
+                        start = left;
+                    }
                 }
             }
         }
