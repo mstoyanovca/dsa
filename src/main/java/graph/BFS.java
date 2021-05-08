@@ -11,13 +11,14 @@ public class BFS {
         ArrayList<Integer> result = new ArrayList<>();
 
         queue.add(0);
+        visited[0] = true;
 
         while (!queue.isEmpty()) {
             int removed = queue.remove();
-            visited[removed] = true;
             result.add(removed);
             for (int i : adj.get(removed)) {
                 if (!visited[i]) {
+                    visited[i] = true;
                     queue.add(i);
                 }
             }
@@ -45,13 +46,35 @@ public class BFS {
     }
 
     public static void main(String[] args) {
-        int v = 5;
-        Graph graph = new Graph(5);
-        graph.addEdge(0, 1);
+        int v = 10;
+        Graph graph = new Graph(10);
         graph.addEdge(0, 2);
         graph.addEdge(0, 3);
-        graph.addEdge(2, 4);
+        graph.addEdge(0, 4);
+        graph.addEdge(0, 5);
+        graph.addEdge(0, 6);
+        graph.addEdge(0, 7);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(1, 4);
+        graph.addEdge(1, 5);
+        graph.addEdge(1, 7);
+        graph.addEdge(1, 8);
+        graph.addEdge(2, 3);
+        graph.addEdge(2, 5);
+        graph.addEdge(2, 7);
+        graph.addEdge(2, 8);
+        graph.addEdge(2, 9);
+        graph.addEdge(3, 4);
+        graph.addEdge(3, 7);
+        graph.addEdge(3, 8);
+        graph.addEdge(3, 9);
+        graph.addEdge(4, 5);
+        graph.addEdge(5, 7);
+        graph.addEdge(5, 9);
+        graph.addEdge(6, 8);
+        graph.addEdge(8, 9);
 
-        System.out.println(new BFS().bfsOfGraph(v, graph.graph));  // 0 1 2 3 4
+        System.out.println(new BFS().bfsOfGraph(v, graph.graph));  // 0 2 3 4 5 6 7 8 9
     }
 }
