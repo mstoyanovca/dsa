@@ -11,8 +11,7 @@ public class DFS {
         result.add(node);
         visited[node] = true;
 
-        ArrayList<Integer> sublist = graph.get(node);
-        for (int i : sublist) if (!visited[i]) loop(i, visited, graph, result);
+        for (int i : graph.get(node)) if (!visited[i]) loop(i, visited, graph, result);
 
         return result;
     }
