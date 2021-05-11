@@ -6,7 +6,7 @@ public class TopologicalSort {
     public int[] topoSort(int n, ArrayList<ArrayList<Integer>> adj) {
         Deque<Integer> stack = new ArrayDeque<>();
         boolean[] visited = new boolean[n];
-        for (int i = 0; i < n; i++) loop(i, visited, stack, adj);
+        for (int i = 0; i < n; i++) if (!visited[i]) loop(i, visited, stack, adj);
         return stack.stream().mapToInt(Integer::intValue).toArray();
     }
 
