@@ -11,18 +11,29 @@ public class DijkstraAlgorithm {
         boolean[] visited = new boolean[v];
 
         for (int i = 0; i < v; i++) {
-            int minIndex = Arrays.stream(distances).min().orElse(-1);
+            int minIndex = findMinIndex(distances, visited);
             visited[minIndex] = true;
             for (ArrayList<Integer> adjacentVertex : graph.get(minIndex)) {  // (int vertex1, int distance1), (int vertex2, int distance2)
                 int vertex = adjacentVertex.get(0);
                 int distance = adjacentVertex.get(1);
-                if (!visited[vertex] && distances[source] + distance < distances[vertex]) {
-                    distances[vertex] = distances[source] + distance;
-                }
+                if (distances[minIndex] + distance < distances[vertex])
+                    distances[vertex] = distances[minIndex] + distance;
             }
         }
 
         return distances;
+    }
+
+    private int findMinIndex(int[] distances, boolean[] visited) {
+        int min = Integer.MAX_VALUE;
+        int minIndex = -1;
+        for (int i = 0; i < distances.length; i++) {
+            if (!visited[i] && distances[i] <= min) {
+                min = distances[i];
+                minIndex = i;
+            }
+        }
+        return minIndex;
     }
 
     public static void main(String[] args) {
