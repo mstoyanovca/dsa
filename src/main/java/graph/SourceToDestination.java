@@ -1,10 +1,16 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class SourceToDestination {
     public boolean is_Possible(int[][] grid) {
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < grid.length; i++) {
+            graph.add(new ArrayList<>());
+        }
         int rows = grid.length;
         int columns = grid[0].length;
         Queue<Vertex> queue = new LinkedList<>();
@@ -18,7 +24,7 @@ public class SourceToDestination {
             }
         }
 
-        while (queue.size() > 0) {
+        while (!queue.isEmpty()) {
             Vertex vertex = queue.poll();
             int row = vertex.row;
             int column = vertex.column;
@@ -29,13 +35,13 @@ public class SourceToDestination {
             if (row - 1 >= 0 && grid[row - 1][column] != 0) {
                 queue.add(new Vertex(row - 1, column));
             }
-            if (row + 1 <= rows - 1 && grid[row + 1][column] != 0) {
+            if (row + 1 < rows && grid[row + 1][column] != 0) {
                 queue.add(new Vertex(row + 1, column));
             }
             if (column - 1 >= 0 && grid[row][column - 1] != 0) {
                 queue.add(new Vertex(row, column - 1));
             }
-            if (column + 1 <= columns - 1 && grid[row][column + 1] != 0) {
+            if (column + 1 < columns && grid[row][column + 1] != 0) {
                 queue.add(new Vertex(row, column + 1));
             }
         }
@@ -50,14 +56,6 @@ public class SourceToDestination {
         public Vertex(int row, int column) {
             this.row = row;
             this.column = column;
-        }
-
-        public int getRow() {
-            return row;
-        }
-
-        public int getColumn() {
-            return column;
         }
     }
 
