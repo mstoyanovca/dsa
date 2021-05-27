@@ -1,16 +1,10 @@
 package graph;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class SourceToDestination {
     public boolean is_Possible(int[][] grid) {
-        List<List<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < grid.length; i++) {
-            graph.add(new ArrayList<>());
-        }
         int rows = grid.length;
         int columns = grid[0].length;
         Queue<Vertex> queue = new LinkedList<>();
