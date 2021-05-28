@@ -1,56 +1,50 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class SourceToDestination {
     public boolean is_Possible(int[][] grid) {
-        int rows = grid.length;
-        int columns = grid[0].length;
-        Queue<Vertex> queue = new LinkedList<>();
+        int n = grid.length;
+        int s = -1;
+        int d = -1;
+        boolean[] visited = new boolean[n * n];
+        List<List<Integer>> graph = new ArrayList<>();
+        Queue<Integer> queue = new LinkedList<>();
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (grid[i][j] == 1) {
-                    queue.add(new Vertex(i, j));
-                    break;
+        for (int i = 0; i < n * n; i++) graph.add(new ArrayList<>());
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                int vertex = i * n + j;
+                if (grid[i][j] != 0) {
+                    if (j + 1 < n && grid[i][j + 1] != 0) graph.get(vertex).add(vertex + 1);
+                    if (j - 1 >= 0 && grid[i][j - 1] != 0) graph.get(vertex).add(vertex - 1);
+                    if (i + 1 < n && grid[i + 1][j] != 0) graph.get(vertex).add(vertex + n);
+                    if (i - 1 >= 0 && grid[i - 1][j] != 0) graph.get(vertex).add(vertex - n);
+                }
+                if (grid[i][j] == 1) s = vertex;
+                if (grid[i][j] == 2) d = vertex;
+            }
+        }
+
+        visited[s] = true;
+        queue.add(s);
+
+        while (!queue.isEmpty()) {
+            int vertex = queue.poll();
+            for (int i : graph.get(vertex)) {
+                if (vertex == d) return true;
+                if (!visited[i]) {
+                    visited[i] = true;
+                    queue.add(i);
                 }
             }
         }
 
-        while (!queue.isEmpty()) {
-            Vertex vertex = queue.poll();
-            int row = vertex.row;
-            int column = vertex.column;
-
-            if (grid[row][column] == 2) return true;
-            grid[row][column] = 0;
-
-            if (row - 1 >= 0 && grid[row - 1][column] != 0) {
-                queue.add(new Vertex(row - 1, column));
-            }
-            if (row + 1 < rows && grid[row + 1][column] != 0) {
-                queue.add(new Vertex(row + 1, column));
-            }
-            if (column - 1 >= 0 && grid[row][column - 1] != 0) {
-                queue.add(new Vertex(row, column - 1));
-            }
-            if (column + 1 < columns && grid[row][column + 1] != 0) {
-                queue.add(new Vertex(row, column + 1));
-            }
-        }
-
         return false;
-    }
-
-    private static class Vertex {
-        private final int row;
-        private final int column;
-
-        public Vertex(int row, int column) {
-            this.row = row;
-            this.column = column;
-        }
     }
 
     public static void main(String[] args) {
