@@ -1,9 +1,7 @@
 package graph;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class MinimumCostQueue {
     public int minimumCostPath(int[][] grid) {
@@ -11,34 +9,49 @@ public class MinimumCostQueue {
         int[][] distances = new int[n][n];
         for (int i = 0; i < n; i++) for (int j = 0; j < n; j++) distances[i][j] = Integer.MAX_VALUE;
         distances[0][0] = grid[0][0];
-        Queue<List<Integer>> queue = new LinkedList<>();
-        List<Integer> startCell = Arrays.asList(0, 0);
-        queue.add(startCell);
+        PriorityQueue<Cell> queue = new PriorityQueue<>(n * n, Comparator.comparingInt(Cell::getDistance));
+        queue.add(new Cell(0, 0, grid[0][0]));
 
         while (!queue.isEmpty()) {
-            List<Integer> currentCell = queue.poll();
-            int x = currentCell.get(0);
-            int y = currentCell.get(1);
+            Cell cell = queue.poll();
+            int x = cell.x;
+            int y = cell.y;
 
             if (x - 1 >= 0 && distances[x - 1][y] > distances[x][y] + grid[x - 1][y]) {
                 distances[x - 1][y] = distances[x][y] + grid[x - 1][y];
-                queue.add(Arrays.asList(x - 1, y));
+                queue.add(new Cell(x - 1, y, distances[x - 1][y]));
             }
             if (x + 1 < n && distances[x + 1][y] > distances[x][y] + grid[x + 1][y]) {
                 distances[x + 1][y] = distances[x][y] + grid[x + 1][y];
-                queue.add(Arrays.asList(x + 1, y));
+                queue.add(new Cell(x + 1, y, distances[x + 1][y]));
             }
             if (y - 1 >= 0 && distances[x][y - 1] > distances[x][y] + grid[x][y - 1]) {
                 distances[x][y - 1] = distances[x][y] + grid[x][y - 1];
-                queue.add(Arrays.asList(x, y - 1));
+                queue.add(new Cell(x, y - 1, distances[x][y - 1]));
             }
             if (y + 1 < n && distances[x][y + 1] > distances[x][y] + grid[x][y + 1]) {
                 distances[x][y + 1] = distances[x][y] + grid[x][y + 1];
-                queue.add(Arrays.asList(x, y + 1));
+                queue.add(new Cell(x, y + 1, distances[x][y + 1]));
             }
         }
 
         return distances[n - 1][n - 1];
+    }
+
+    private static class Cell {
+        int x;
+        int y;
+        int distance;
+
+        public Cell(int x, int y, int distance) {
+            this.x = x;
+            this.y = y;
+            this.distance = distance;
+        }
+
+        public int getDistance() {
+            return distance;
+        }
     }
 
     public static void main(String[] args) {
